@@ -1,0 +1,23 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'uninstall', '-g', 'cordova' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink /usr/bin/node
+5 verbose lib/node_modules/cordova unbuild
+6 info preuninstall cordova@4.2.0
+7 info uninstall cordova@4.2.0
+8 verbose true,/usr/lib/node_modules,/usr/lib/node_modules unbuild cordova@4.2.0
+9 verbose /usr/bin,[object Object] binRoot
+10 error Error: EACCES, unlink '/usr/bin/cordova'
+10 error  { [Error: EACCES, unlink '/usr/bin/cordova'] errno: 3, code: 'EACCES', path: '/usr/bin/cordova' }
+11 error Please try running this command again as root/Administrator.
+12 error System Linux 3.13.0-45-generic
+13 error command "/usr/bin/node" "/usr/bin/npm" "uninstall" "-g" "cordova"
+14 error cwd /var/www/html/morea
+15 error node -v v0.10.33
+16 error npm -v 1.4.28
+17 error path /usr/bin/cordova
+18 error code EACCES
+19 error errno 3
+20 error stack Error: EACCES, unlink '/usr/bin/cordova'
+21 verbose exit [ 3, true ]
