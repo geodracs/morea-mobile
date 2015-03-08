@@ -1,117 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Morea APP</title>
-    <style type="text/css">
-        .top-menu{
-            position: fixed;top: 0;left: 0;width: 100%;height:40px;background-color: #528CE0;
-            padding: 5px;;
-        }
-        .fixed-col{
-            position: fixed;
-            left: 0;
-            width: 80%;
-            margin-left: -938px;
-            height: 100%;
-            background-color: #0d3349;
-            z-index: 99;
-            top:0;
-        }
-        ul.side-nav{
-            width: 80% !important;
-            line-height: 34px;
-        }
-        nav ul a{
-            padding: 0 !important;
-        }
-        nav ul li{
-            padding: 0;
-        }
 
-
-
-        .product{
-            margin: 10px;
-            overflow: hidden;
-            background-color: white;
-            padding: 10px;;
-        }
-        .image{
-            height: 200px;
-            overflow: hidden;
-        }
-    </style>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
-
-</head>
-<body>
-
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-
-        <ul style="width: 80%" id="nav-mobile" class="left">
-            <li style="width: 80%"><input  type="text" placeholder="Buscar.."></li>
-
-            <li><a onclick="getItems()" href="sass.html">2P</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <li><a>Iniciar Sesion</a></li>
-            <li><a>Registrarse</a></li>
-            <li><a>Realizar pedido</a></li>
-            <li><a>Mi direccion (Geolocalizacion)</a></li>
-            <li><a>Modificar mis datos</a></li>
-            <li><a>Productos (Buscador)</a></li>
-        </ul>
-    </div>
-
-</nav>
-<div  style="background-color: orangered" id="MyCart_list"></div>
 
 <div>
-    Esta es la pagina de login
+    Esta es la pagina de login<br>
+    Esta es la pagina de login<br>
+    Esta es la pagina de login<br>
+    Esta es la pagina de login<br>
+    Esta es la pagina de login<br>
+    Esta es la pagina de login<br>
 </div>
-</body>
 
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/morea.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-
-
-<script type="text/javascript">
-    $(".button-collapse").sideNav();
-    // TODO more accurate marginLeft
-    $('.top-menu-open').click(function(){
-
-        $('.fixed-col').animate({
-            marginLeft: '+=938px'
-        }, 500);
-
-    });
-
-
-    $('.fixed-col-header').click(function(){
-
-        $('.fixed-col').animate({
-            marginLeft: '-=938px'
-        }, 500);
-
-    });
-
-</script>
-</html>
