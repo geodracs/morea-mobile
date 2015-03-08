@@ -24,10 +24,38 @@
                 z-index: 99;
                 top:0;
             }
+            ul.side-nav{
+                width: 80% !important;
+                line-height: 34px;
+            }
+            nav ul a{
+                padding: 0 !important;
+            }
+            nav ul li{
+                padding: 0;
+            }
+
+
+
+            .product{
+                margin: 10px;
+                overflow: hidden;
+                background-color: white;
+                padding: 10px;;
+            }
+            .image{
+                height: 200px;
+                overflow: hidden;
+            }
         </style>
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+
     </head>
     <body>
 
+    <!--
     <div class="top-menu">
         <div class="row">
             <div class="col-xs-2 top-menu-open"><span style="font-size: 20pt;" class="glyphicon glyphicon-menu-hamburger"></span> </div>
@@ -39,6 +67,9 @@
 
     <div class="fixed-col" style="color:white;">
         <div class="fixed-col-header">Cerrar</div>
+        <div>Buscar</div>
+        <div>Categorias</div>
+
         <div>Iniciar Sesion</div>
         <div>Crear una cuenta</div>
         <div>Pedidos</div>
@@ -47,19 +78,39 @@
     </div>
 
 
-    <!-- AQUI PARTE MODIFICABLE -->
 
     <div>Aqui se cargará el contenido dinamicamente
 
     <ul>
-        <li>Iniciar Sesion</li>
-        <li>Registrarse</li>
-        <li>Realizar pedido</li>
-        <li>Mi direccion (Geolocalizacion)</li>
-        <li>Modificar mis datos</li>
-        <li>Productos (Buscador)</li>
+
     </ul>
     </div>
+    -->
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+            <ul style="width: 80%" id="nav-mobile" class="left">
+                <li style="width: 80%"><input  type="text" placeholder="Buscar.."></li>
+
+                <li><a onclick="getItems()" href="sass.html">2P</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="login.html">Iniciar Sesion</a></li>
+                <li><a>Registrarse</a></li>
+                <li><a>Realizar pedido</a></li>
+                <li><a>Mi direccion (Geolocalizacion)</a></li>
+                <li><a>Modificar mis datos</a></li>
+                <li><a>Productos (Buscador)</a></li>
+            </ul>
+        </div>
+
+    </nav>
+    <div  style="background-color: orangered" id="MyCart_list"></div>
+
+    <div id="products_container"></div>
+    </body>
 
 
 
@@ -69,9 +120,11 @@
     <script type="text/javascript" src="js/morea.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 
 
     <script type="text/javascript">
+        $(".button-collapse").sideNav();
         // TODO more accurate marginLeft
         $('.top-menu-open').click(function(){
 
@@ -91,5 +144,4 @@
         });
 
     </script>
-    </body>
 </html>
