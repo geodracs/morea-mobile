@@ -78,12 +78,12 @@
                 <li style="text-align: right;width: 10%"><a onclick="getItems()">2<span style="font-size: 18pt;" class="glyphicon glyphicon-shopping-cart"></span> </a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a onclick="load('login.html')">Iniciar Sesion</a></li>
-                <li><a onclick="load('register.html')">Registrarse</a></li>
-                <li><a onclick="load('orderCart.html')">Realizar pedido</a></li>
-                <li><a onclick="load('orders.html')">Mis pedidos</a></li>
-                <li><a onclick="load('adress.html')">Mi direccion (Geolocalizacion)</a></li>
-                <li><a onclick="load('info.html')">Modificar mis datos</a></li>
+                <li><a onclick="load('views/login.html')">Iniciar Sesion</a></li>
+                <li><a onclick="load('views/register.html')">Registrarse</a></li>
+                <li><a onclick="load('views/orderCart.html')">Realizar pedido</a></li>
+                <li><a onclick="load('views/orders.html')">Mis pedidos</a></li>
+                <li><a onclick="load('views/adress.html')">Mi direccion (Geolocalizacion)</a></li>
+                <li><a onclick="load('views/info.html')">Modificar mis datos</a></li>
                 <li><a onclick="myCart.api.search('')">Categoria 1</a></li>
                 <li><a onclick="myCart.api.search('')">Categoria 2</a></li>
                 <li><a onclick="myCart.api.search('')">Categoria 3</a></li>
@@ -93,7 +93,7 @@
         </div>
 
     </nav>
-    <div  style="background-color: orangered;position: fixed;top: 0;left: 0;width: 100%;z-index: 90;" id="MyCart_list"></div>
+    <div  style="background-color: orangered;position: fixed;top: 0;left: 0;width: 100%;z-index: 90;padding-top: 60px;display: none" id="MyCart_list"></div>
 
     <div id="products_container" style="padding-top: 70px;"></div>
     </body>

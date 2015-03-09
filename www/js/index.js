@@ -89,19 +89,25 @@ function onProductDownload(res){
 
 }
 
-
+var show = false;
 function getItems(){
+    show = !show;
 
     console.log("Intentando rellenar la lista");
     var html = "";
-    myCart.cart.items(function (response) {
-        html += "<div>";
-        html += '<img style="height:50px;" src="'+response.img+'">';
-        html += '<p>' +response.name+'</p>';
-        html += '<div> x' +response.amount+'</div>';
-        html += "</div>";
-    });
-    document.getElementById('MyCart_list').style.display = "block";
-    document.getElementById('MyCart_list').innerHTML = html;
-    console.log(myCart.cart.getTotalPrice());
+    if (show) {
+
+        myCart.cart.items(function (response) {
+            html += "<div style='overflow: hidden;height: auto !important;padding: 5px;'>";
+            html += '<img style="height:50px;float:left;" src="' + response.img + '">';
+            html += '<p style="float:left;">' + response.name + '</p>';
+            html += '<div style="float:right;font-size: 16pt"> x' + response.amount + '</div>';
+            html += "</div>";
+        });
+        document.getElementById('MyCart_list').style.display = "block";
+        document.getElementById('MyCart_list').innerHTML = html;
+        console.log(myCart.cart.getTotalPrice());
+    }else{
+        document.getElementById('MyCart_list').style.display = "none";
+    }
 }
