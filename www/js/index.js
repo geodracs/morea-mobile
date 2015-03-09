@@ -59,7 +59,7 @@ function onSearchComplete(res){
         html += '<div style="font-weight: bold">'+obj[i].name+'</div>';
         html += '<div style="color: gray">';
         html += '<button style="opacity:0.7;" type="button" class="btn btn-xs btn-default" onclick="myCart.add(' + obj[i].id_pro + ')" data-pid="2" class="addToCart">';
-        html += '<span class="glyphicon glyphicon-shopping-cart"></span> Comprar';
+        html += '<i class="mdi-action-add-shopping-cart"></i> Comprar';
         html += '</button>';
         html += '</div>';
         html += '</div>';
@@ -101,9 +101,11 @@ function getItems(){
             html += "<div style='overflow: hidden;height: auto !important;padding: 5px;'>";
             html += '<img style="height:50px;float:left;" src="' + response.img + '">';
             html += '<p style="float:left;">' + response.name + '</p>';
-            html += '<div style="float:right;font-size: 16pt"> x' + response.amount + '</div>';
+            html += '<div style="float:right;font-size: 16pt">add 1 | remove | '+response.price+'e | x' + response.amount + '</div>';
             html += "</div>";
         });
+        var total = myCart.cart.getTotalPrice();
+        html += '<div><div>Total:'+total+' </div><button>Pagar ahora</button></div>';
         document.getElementById('MyCart_list').style.display = "block";
         document.getElementById('MyCart_list').innerHTML = html;
         console.log(myCart.cart.getTotalPrice());
@@ -111,3 +113,4 @@ function getItems(){
         document.getElementById('MyCart_list').style.display = "none";
     }
 }
+

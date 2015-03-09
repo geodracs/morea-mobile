@@ -3,13 +3,17 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <meta name="msapplication-tap-highlight" content="no" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Morea APP</title>
         <style type="text/css">
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
             .top-menu{
                 position: fixed;top: 0;left: 0;width: 100%;height:40px;background-color: #528CE0;
                 padding: 5px;;
@@ -73,9 +77,9 @@
                     </form>
 
                 </li>
-                <li style="width: 10%"><button style="width: 100%;height: 100%;background-color: transparent;border: none;text-align: left" onclick="myCart.api.search('')"><span style="font-size: 20pt;" class="glyphicon glyphicon-triangle-right"></span> </button></li>
+                <li style="width: 10%"><button style="width: 100%;height: 100%;background-color: transparent;border: none;text-align: left" onclick="myCart.api.search('')"><span style="font-size: 20pt;" class="mdi-av-play-arrow"></span> </button></li>
 
-                <li style="text-align: right;width: 10%"><a onclick="getItems()">2<span style="font-size: 18pt;" class="glyphicon glyphicon-shopping-cart"></span> </a></li>
+                <li style="text-align: right;width: 10%"><a onclick="getItems()">2<span style="font-size: 18pt;" class="mdi-action-shopping-cart"></span> </a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a onclick="load('views/login.html')">Iniciar Sesion</a></li>

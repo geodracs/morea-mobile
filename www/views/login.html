@@ -1,13 +1,47 @@
+<div style="padding: 10px;font-size: 15pt;height: 200px;">
+    Inicia sesion en esta super mega guay pagina para comprar flores y nada mas
+</div>
+<div class="row">
+    <form id="login" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <i class="mdi-action-account-circle prefix"></i>
+                <input name="user" id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">First Name</label>
+            </div>
+            <div class="input-field">
+                <i class="mdi-hardware-security prefix"></i>
+                <input name="pass" id="icon_telephone" type="password" class="validate">
+                <label for="icon_telephone">Contraseña</label>
+            </div>
 
+            <div style="text-align: center">
+                <button type="submit" class="waves-effect waves-light btn-large">Iniciar sesión</button>
+                <a class="waves-effect waves-light btn-large">Crear una cuenta</a>
 
-<div>
-    Esta es la pagina de login<br>
-    Esta es la pagina de login<br>
-    Esta es la pagina de login<br>
-    Esta es la pagina de login<br>
-    Esta es la pagina de login<br>
-    Esta es la pagina de login<br>
+            </div>
+        </div>
+    </form>
+
 </div>
 
+<script>
 
+    $( "#login" ).submit(function( event ) {
+        myCart.api.login(this);
 
+        event.preventDefault();
+    });
+
+    // Login Success
+    function onLoginComplete(res){
+        console.log("Logeado con exito");
+        myCart.api.search("");
+        // Hide and show options and load products
+    }
+
+    // Login fail
+    function onLoginFail(res){
+        console.log("Ha fallado el login");
+    }
+</script>
