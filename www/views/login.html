@@ -17,7 +17,7 @@
 
             <div style="text-align: center">
                 <button type="submit" class="waves-effect waves-light btn-large">Iniciar sesión</button>
-                <a class="waves-effect waves-light btn-large">Crear una cuenta</a>
+                <a class="waves-effect waves-light btn-large" onclick="load('views/register.html')">Crear una cuenta</a>
 
             </div>
         </div>
@@ -36,6 +36,8 @@
     // Login Success
     function onLoginComplete(res){
         console.log("Logeado con exito");
+        $('.registered').css("display","block");
+        $('.unregistered').css("display","none");
         myCart.api.search("");
         // Hide and show options and load products
     }
@@ -44,4 +46,6 @@
     function onLoginFail(res){
         console.log("Ha fallado el login");
     }
+
+
 </script>
