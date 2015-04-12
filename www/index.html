@@ -90,22 +90,21 @@
             <ul class="side-nav" id="mobile-demo">
                 <li class="unregistered"><a onclick="load('views/login.html')">Iniciar Sesion</a></li>
                 <li class="unregistered"><a onclick="load('views/register.html')">Registrarse</a></li>
-                <li><a onclick="load('views/orderCart.html')">Realizar pedido</a></li>
                 <li class="registered" ><a onclick="load('views/orders.html')">Mis pedidos</a></li>
                 <li class="registered"><a onclick="load('views/adress.html')">Mi direccion (Geolocalizacion)</a></li>
                 <li class="registered"><a onclick="load('views/info.html')">Modificar mis datos</a></li>
-                <li><a onclick="myCart.api.search('')">Categoria 1</a></li>
-                <li><a onclick="myCart.api.search('')">Categoria 2</a></li>
-                <li><a onclick="myCart.api.search('')">Categoria 3</a></li>
-                <li><a onclick="myCart.api.search('')">Categoria 4</a></li>
-                <li><a onclick="myCart.api.search('')">Categoria 5</a></li>
+                <li><a onclick="myCart.api.categorySearch(44,0)">Regalar</a></li>
+                <li><a onclick="myCart.api.categorySearch(45,0)">Eventos</a></li>
+                <li><a onclick="myCart.api.categorySearch(46,0)">Navidad</a></li>
+                <li><a onclick="myCart.api.categorySearch(50,0)">Bonsai</a></li>
+                <li><a onclick="myCart.api.categorySearch(51,0)">Frutales</a></li>
                 <li class="registered"><a onclick="onLogOut()">Cerrar sesión</a></li>
 
             </ul>
         </div>
 
     </nav>
-    <div  style="background-color: orangered;position: fixed;top: 0;left: 0;width: 100%;z-index: 90;padding-top: 60px;display: none" id="MyCart_list"></div>
+    <div  style="background-color: #d0cbd9;position: fixed;top: 0;left: 0;width: 100%;z-index: 90;padding-top: 60px;display: none" id="MyCart_list"></div>
 
     <div id="products_container" style="padding-top: 70px;"></div>
     </body>

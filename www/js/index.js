@@ -31,19 +31,27 @@ var app = {
 app.initialize();
 
 
+var FULL_URL = "http://yune.es/";
+
+
 var myCart = morea({
     storageKey: "test12", // Required
-    productUrl: "http://54.186.190.118/users/async/get_product_info?id=[:id]", // Required
-    searchURL: "http://54.186.190.118/users/async/get_products?q=[:q]", // TODO
-    loginUrl: "http://54.186.190.118/api/auth/login",
-    appID: "231"
+    productUrl: FULL_URL+ "users/async/get_product_info?id=[:id]", // Required
+    searchURL: FULL_URL+"api/product/search/[:q]/[:p]", // TODO
+    categoryUrl: FULL_URL+"api/product/category/[:id]/[:p]",
+    cartSync: FULL_URL+"api/cart/sync",
+    appID: "231",
+    loginUrl: FULL_URL+"api/auth/login"
+
 });
+
 myCart.recover();
 
-myCart.api.search("");
+myCart.api.search("all",0);
 
 function onSearchComplete(res){
-
+    console.log("onSearchComplete Executed");
+    console.log(res);
     var obj = res.data;
     var html = "";
     for (var i = 0; i < obj.length; i++) {
@@ -76,6 +84,9 @@ function onSearchComplete(res){
 
 }
 
+
+
+// This way the user can create custom objects
 function onProductDownload(res){
     console.log("PRODUCTO DESCARGADO" + res);
     console.log(res);
@@ -84,10 +95,22 @@ function onProductDownload(res){
     res.item.description = res.data.description;
     res.item.price = res.data.price;
     res.item.category_id = res.data.category_id;
-
     myCart.store();
 
 }
+
+
+
+
+function updateCart(){
+    $('#cant-art-mod').html(myCart.cart.lastItem);
+}
+
+
+
+function onProductIncrease(){
+}
+
 
 var show = false;
 function getItems(){
@@ -99,13 +122,15 @@ function getItems(){
 
         myCart.cart.items(function (response) {
             html += "<div style='overflow: hidden;height: auto !important;padding: 5px;'>";
-            html += '<img style="height:50px;float:left;" src="' + response.img + '">';
-            html += '<p style="float:left;">' + response.name + '</p>';
-            html += '<div style="float:right;font-size: 16pt">add 1 | remove | '+response.price+'e | x' + response.amount + '</div>';
+            html += '<img style="height:50px;width:50px;float:left;" src="' + response.img + '">';
+            html += '<div style="float:left;font-size:15pt;padding: 10px">' + response.name + '('+response.amount+')</div>';
+            html += '<button class="waves-effect waves-teal btn-flat" style="float:right;font-size: 8pt;padding: 4px;margin: 0"> Eliminar </button>';
             html += "</div>";
         });
         var total = myCart.cart.getTotalPrice();
-        html += '<div><div>Total:'+total+' </div><button>Pagar ahora</button></div>';
+        html += '<div  style="height: auto !important;overflow: hidden;padding: 10px;border-top: 1px silver dashed">' +
+        '<button  onclick="load(&#39views/orderCart.html&#39);getItems()" class="btn waves-effect waves-light" style="float: left">Pagar ahora</button>' +
+        '<div style="float: right;font-size: 20pt;font-weight: bold">'+total+'€</div></div>';
         document.getElementById('MyCart_list').style.display = "block";
         document.getElementById('MyCart_list').innerHTML = html;
         console.log(myCart.cart.getTotalPrice());

@@ -35,14 +35,37 @@ var moreaAPI = function (config){
         productUrl: config.productUrl,
         container: config.container,
         loginUrl: config.loginUrl,
+        categoryUrl: config.categoryUrl,
         appID: config.appID,
+        cartSyncUrl: config.cartSync,
         token: "",
 
-        search: function(q){
+        search: function(q,p){
             document.addEventListener("onSearch",onSearchComplete,false);
             var xmlhttp = new XMLHttpRequest();
             var url = this.searchUrl;
             url = url.replace("[:q]", q);
+            url = url.replace("[:p]", p);
+            var evt = document.createEvent("Event");
+            evt.initEvent('onSearch', true, true);
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var obj = JSON.parse(xmlhttp.responseText);
+                    evt.data = obj;
+                    console.log("Productos descargados. Enviando por evento..");
+                    document.dispatchEvent(evt);
+                }
+            }
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send();
+        },
+        categorySearch: function(id,p){
+            document.addEventListener("onSearch",onSearchComplete,false);
+            var xmlhttp = new XMLHttpRequest();
+            var url = this.categoryUrl;
+            url = url.replace("[:id]", id);
+            url = url.replace("[:p]", p);
+
             var evt = document.createEvent("Event");
             evt.initEvent('onSearch', true, true);
             xmlhttp.onreadystatechange = function () {
@@ -80,15 +103,41 @@ var moreaAPI = function (config){
                 }
             })
         },
-        register: function(){
+        register: function(e){
+            // TODO register
+            var postData = $(e).serialize() + "&app_id=" + this.appID;
+            console.log(postData);
 
+            document.addEventListener("onRegister",onRegisterComplete,false);
+            document.addEventListener("onRegisterFail",onRegisterFail,false);
+            var evt = document.createEvent("Event");
+            var evt2 = document.createEvent("Event");
+            evt.initEvent('onRegister', true, true);
+            evt2.initEvent('onRegisterFail', true, true);
+            var self = this;
+            $.post(this.loginUrl, postData, function(res){
+                console.log("Respuesta al login... desde la api");
+                console.log(res);
+                if (res.status) {
+                    self.token = res.token;
+                    document.dispatchEvent(evt);
+
+                }else{
+                    document.dispatchEvent(evt2);
+
+                }
+            })
         },
         getUserToken: function(){
 
             return this.token;
         },
-        cartSync: function(itemList, callback){
+        sync: function(itemList){
             // TODO return the last version of cartItems
+            // return event onCartSync
+            $.post(this.cartSyncUrl,{items:JSON.stringify(itemList)},function(res){
+                console.log(res);
+            });
         },
         getProduct: function(itemObj){
             // return object downloaded
@@ -149,17 +198,8 @@ var moreaCart = function(config){
             }
             return itemNum;
         },
-        remove: function(id){
-            console.log("Remove item command...");
-            var itemIndex = this.getById(id);
-            if (itemIndex != -1){
-                console.log("Deleting product...");
-                this.items.splice(itemIndex, 1);
-                this.lastItem--;
-            }
-
-        },
         add: function(id){
+            //TODO dispatch event onProductAdd
             var index = -1;
 
             var itemIndex = this.getById(id);
@@ -169,9 +209,15 @@ var moreaCart = function(config){
                 index = this.lastItem;
                 this.lastItem++;
             }else{
+
+
+
+
                 console.log("The product exist, adding + 1");
                 // TODO Better way
                 this.itemList[itemIndex].amount++;
+                onProductIncrease();
+
             }
             return index;
 
@@ -180,10 +226,29 @@ var moreaCart = function(config){
             var price = 0.0;
 
             this.items(function(item){
-                price += item.price;
+                price += item.price * item.amount;
             });
             return price;
+        },
+        increaseAmount: function(id){
+            var item = this.getById(id);
+            item.amount++;
+        },
+        decreaseAmount: function(id){
+            var item = this.getById(id);
+            item.amount--;
+        },
+        remove: function(prod_id){
+            console.log("Remove from itemList: "+prod_id);
+            var index = this.getById(prod_id);
+            if (index > -1) {
+                console.log("Removed");
+                this.itemList.splice(index, 1);
+                this.lastItem--;
+
+            }
         }
+
 
     }
 
@@ -237,6 +302,13 @@ var morea = function(config){
                 }
             }
 
+        },
+        remove: function(item_id){
+            this.cart.remove(item_id);
+            this.store();
+        },
+        sync: function(){
+            this.api.sync(this.cart.itemList);
         }
 
     }
